@@ -1,0 +1,25 @@
+<wiidisc version="1" shiftfiles="true" root="/nsmbw_ils_mod" log="true">
+    <id game="SMN" />
+    <options>
+        <section name="NSMBW ILs Mod">
+            <option name="NSMBW ILs Mod" id="nsmbw_ils_mod" default="1">
+                <choice name="Enabled"><patch id="nsmbw_ils_mod" /></choice>
+            </option>
+        </section>
+    </options>
+    <patch id="nsmbw_ils_mod">
+        <folder external="./" disc="/" create="true" recursive="true" />
+        <folder external="Lang" disc="/EU" recursive="true" />
+        <folder external="Lang" disc="/US" recursive="true" />
+        <folder external="Lang" disc="/JP" recursive="true" />
+        <folder external="Lang" disc="/KR" recursive="true" />
+        <folder external="Lang" disc="/TW" recursive="true" />
+        <folder external="Lang" disc="/CN" recursive="true" />
+        <memory offset="0x80001900" valuefile="Code/loader.bin" />
+        <memory offset="0x80328478" value="80001970" original="8015BC60" />
+        <memory offset="0x80328130" value="80001970" original="8015BB20" />
+        <memory offset="0x80327E98" value="80001970" original="8015B930" />
+        <memory offset="0x80334E60" value="80001970" original="8015C060" />
+        <memory offset="0x80333218" value="80001970" original="8015C060" />
+    </patch>
+</wiidisc>
