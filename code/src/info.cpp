@@ -49,10 +49,6 @@ void set_level_name_text() {
     nw4r::lyt::TextBox *box_1 = dGameDisplay_c::m_instance->layout.findTextBoxByName("T_WorldID");
     nw4r::lyt::TextBox *box_2 = dGameDisplay_c::m_instance->layout.findTextBoxByName("T_LevelID");
 
-    // Make the textboxes left aligned since the brlyt editor is annoying
-    box_1->mTextPosition = 0;
-    box_2->mTextPosition = 0;
-
     u8 level_id = dScStage_c::m_instance->curLevel;
     u8 world_id = dScStage_c::m_instance->curWorld;
 
@@ -103,9 +99,6 @@ void set_attempts_text() {
     wchar_t temp_str_wide[ATTEMPTS_STR_WIDTH];
 
     nw4r::lyt::TextBox *box = dGameDisplay_c::m_instance->layout.findTextBoxByName("T_Attempts");
-
-    // Make the textbox left aligned since the brlyt editor is annoying
-    box->mTextPosition = 0;
 
     sprintf(temp_str, "Attempt: %d", attempt);
     int i;
@@ -194,7 +187,6 @@ void show_precise_time() {
 
     // Write the string to the textbox
     box->SetVisible(true);
-    box->mTextPosition = 2;
     box->SetString(time, 0);
 }
 
