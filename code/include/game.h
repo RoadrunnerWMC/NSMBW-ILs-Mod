@@ -23,6 +23,7 @@ public:
 
     static dScStage_c *m_instance;
     static bool m_isCourseOut;
+    static u32 mCollectionCoin[3];
 
     void restoreOldPlayerInfo();
 };
@@ -90,4 +91,66 @@ public:
     int startSystemSe(unsigned int, unsigned long);
     
     static SndAudioMgr *sInstance;
+};
+
+int sprintf(char*, const char*, ...);
+
+namespace nw4r {
+    namespace lyt {
+        class Pane {
+        public:
+            /* 0x00 */ u8 pad_00[0xbb];
+            /* 0xbb */ u8 flag;
+            /* 0xbc */ u8 pad_bc[0x1c];
+
+            bool IsVisible() {
+                return flag & 1;
+            }
+
+            void SetVisible(bool value) {
+                if (value)
+                    flag |= 1;
+                else
+                    flag &= ~1;
+            }
+        };
+
+        class TextBox : public Pane {
+        public:
+            /* 0x0d8 */ u8 pad[0x28];
+            /* 0x100 */ u8 mTextPosition;
+
+            void SetString(const wchar_t*, u16);
+        };
+
+        class Picture : public Pane {
+        };
+    }
+}
+
+namespace d2d {
+    class Multi_c {
+    public:
+        nw4r::lyt::TextBox* findTextBoxByName(const char*);
+        nw4r::lyt::Picture* findPictureByName(const char*);
+    };
+}
+
+class LytBase_c : public d2d::Multi_c {
+};
+
+class dGameDisplay_c {
+public:
+    /* 0x00 */ u8 pad[0x70];
+    /* 0x70 */ LytBase_c layout;
+
+    static dGameDisplay_c *m_instance;
+};
+
+class dStageTimer_c {
+public:
+    /* 0x00 */ u8 pad[0x04];
+    /* 0x04 */ u32 preciseTime;
+
+    static dStageTimer_c *m_instance;
 };
