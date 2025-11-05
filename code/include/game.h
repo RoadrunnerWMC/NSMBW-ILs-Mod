@@ -62,6 +62,7 @@ public:
     void startGame(const dInfo_c::StartGameInfo_s&);
 
     static dInfo_c *m_instance;
+    static StartGameInfo_s m_startGameInfo;
 };
 
 

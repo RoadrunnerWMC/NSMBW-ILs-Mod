@@ -1,5 +1,6 @@
 m_instance__10dScStage_c=0x8042a4a8
 m_instance__7dInfo_c=0x8042a25c
+m_startGameInfo__7dInfo_c=0x80315e90
 setFader__8dFader_cFQ28dFader_c12fader_type_e=0x800b0db0
 startGame__7dInfo_cFRCQ27dInfo_c15StartGameInfo_s=0x800bb7d0
 hashname_a2bd17ff_6bcc38cc__6dAudioFi=0x8006a6a0

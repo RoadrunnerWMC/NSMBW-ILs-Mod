@@ -27,11 +27,7 @@ u32 attempt = 0;
 
 
 void increment_or_reset_attempt_counter() {
-    if (dScStage_c::m_instance == NULL) {
-        return;
-    }
-
-    u16 current_world_and_level = dScStage_c::m_instance->curWorldAndLevel;
+    u16 current_world_and_level = (dInfo_c::m_startGameInfo.level_2 * 0x10) + dInfo_c::m_startGameInfo.world_2;
     if (current_world_and_level != last_world_and_level) {
         // We entered a different level
         last_world_and_level = current_world_and_level;
@@ -197,10 +193,7 @@ void run_at_end_of_level() {
 
 
 // Runs at the start of each level
-kmBranchDefCpp(0x80924e58, NULL, int, ) {
-    increment_or_reset_attempt_counter();
-    return 1;
-}
+kmBranch(0x800BB8C8, increment_or_reset_attempt_counter);
 
 // Runs at the start of each room
 kmBranchDefCpp(0x80158820, NULL, void, ) {
