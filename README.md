@@ -2,7 +2,7 @@
 
 A New Super Mario Bros. Wii mod that adds quality-of-life improvements for speedrunning individual levels (ILs).
 
-This mod has been ruled legal for [the speedrun.com IL leaderboards](https://www.speedrun.com/nsmbw).
+This mod is legal for [the speedrun.com IL leaderboards](https://www.speedrun.com/nsmbw).
 
 ## Features
 
