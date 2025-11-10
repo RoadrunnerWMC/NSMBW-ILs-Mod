@@ -3,14 +3,61 @@
 #include <kamek.h>
 
 
+/* 802e1acc */ int sprintf(char*, const char*, ...);
+
+
+namespace nw4r {
+    namespace lyt {
+        class Pane {
+        public:
+            /* 0x00 */ u8 pad_00[0xbb];
+            /* 0xbb */ u8 flag;
+            /* 0xbc */ u8 pad_bc[0x1c];
+
+            bool IsVisible() {
+                return flag & 1;
+            }
+
+            void SetVisible(bool value) {
+                if (value)
+                    flag |= 1;
+                else
+                    flag &= ~1;
+            }
+        };
+
+        class TextBox : public Pane {
+        public:
+            /* 0x0d8 */ u8 pad[0x28];
+            /* 0x100 */ u8 mTextPosition;
+
+            /* 802af000 */ void SetString(const wchar_t*, u16);
+        };
+
+        class Picture : public Pane {
+        };
+    }
+}
+
+namespace d2d {
+    class Multi_c {
+    public:
+        /* 80007320 */ nw4r::lyt::TextBox* findTextBoxByName(const char*);
+        /* 800073d0 */ nw4r::lyt::Picture* findPictureByName(const char*);
+    };
+}
+
+
 class dScene_c {
 public:
     /* 800e2050 */ static void setFadeOutFrame(u16 duration);
 };
 
+
 class dScStage_c {
 public:
-    u8 pad[0x120c];
+    /* 0x0000 */ u8 pad[0x120c];
+
     // Using a union so we can do some optimizations in certain places
     union {
         struct {
@@ -26,11 +73,11 @@ public:
         /* 0x120c */ u32 curWorldLevelAreaAndZone;
     };
 
-    static dScStage_c *m_instance;
-    static bool m_isCourseOut;
-    static u32 mCollectionCoin[3];
+    /* 8042a4a8 */ static dScStage_c *m_instance;
+    /* 8042a4fd */ static bool m_isCourseOut;
+    /* 803744b0 */ static u32 mCollectionCoin[3];
 
-    void restoreOldPlayerInfo();
+    /* 809253e0 */ void restoreOldPlayerInfo();
 };
 
 
@@ -64,10 +111,10 @@ public:
         /* 0x0f */ u8 level_2;
     } StartGameInfo_s;
 
-    void startGame(const dInfo_c::StartGameInfo_s&);
+    /* 8042a25c */ static dInfo_c *m_instance;
+    /* 80315e90 */ static StartGameInfo_s m_startGameInfo;
 
-    static dInfo_c *m_instance;
-    static StartGameInfo_s m_startGameInfo;
+    /* 800bb7d0 */ void startGame(const dInfo_c::StartGameInfo_s&);
 };
 
 
@@ -82,81 +129,41 @@ public:
         FADER_TYPE_CIRCLE_5,
     } fader_type_e;
 
-    static bool setFader(fader_type_e type);
+    /* 800b0db0 */ static bool setFader(fader_type_e type);
 };
 
 
 class dAudio {
 public:
-    static void hashname_a2bd17ff_6bcc38cc(s32);
+    /* 8006a6a0 */ static void hashname_a2bd17ff_6bcc38cc(s32);
 };
 
 
 class SndAudioMgr {
 public:
-    int startSystemSe(unsigned int, unsigned long);
-    
-    static SndAudioMgr *sInstance;
+    /* 8042a768 */ static SndAudioMgr *sInstance;
+
+    /* 801954c0 */ int startSystemSe(unsigned int, unsigned long);
 };
 
-int sprintf(char*, const char*, ...);
-
-namespace nw4r {
-    namespace lyt {
-        class Pane {
-        public:
-            /* 0x00 */ u8 pad_00[0xbb];
-            /* 0xbb */ u8 flag;
-            /* 0xbc */ u8 pad_bc[0x1c];
-
-            bool IsVisible() {
-                return flag & 1;
-            }
-
-            void SetVisible(bool value) {
-                if (value)
-                    flag |= 1;
-                else
-                    flag &= ~1;
-            }
-        };
-
-        class TextBox : public Pane {
-        public:
-            /* 0x0d8 */ u8 pad[0x28];
-            /* 0x100 */ u8 mTextPosition;
-
-            void SetString(const wchar_t*, u16);
-        };
-
-        class Picture : public Pane {
-        };
-    }
-}
-
-namespace d2d {
-    class Multi_c {
-    public:
-        nw4r::lyt::TextBox* findTextBoxByName(const char*);
-        nw4r::lyt::Picture* findPictureByName(const char*);
-    };
-}
 
 class LytBase_c : public d2d::Multi_c {
 };
+
 
 class dGameDisplay_c {
 public:
     /* 0x00 */ u8 pad[0x70];
     /* 0x70 */ LytBase_c layout;
 
-    static dGameDisplay_c *m_instance;
+    /* 8042a608 */ static dGameDisplay_c *m_instance;
 };
+
 
 class dStageTimer_c {
 public:
     /* 0x00 */ u8 pad[0x04];
     /* 0x04 */ u32 preciseTime;
 
-    static dStageTimer_c *m_instance;
+    /* 8042a350 */ static dStageTimer_c *m_instance;
 };
