@@ -9,7 +9,7 @@ bool is_title_screen_stage() {
     if (dScStage_c::m_instance == NULL) {
         return false;
     }
-    
+
     // 01-40.arc
     return dScStage_c::m_instance->curWorldAndLevel == ((0 << 8) | 39);
 }
@@ -20,19 +20,22 @@ void trigger_stage_reload() {
         return;
     }
 
-    // Trigger a wipe
-    dFader_c::setFader(dFader_c::FADER_TYPE_CIRCLE_5);
-    
+    // To make the transition as quick as possible, request a
+    // "fade"-type fade (i.e. full-screen fade-to-black) with a time of
+    // 0 (instant)
+    dFader_c::setFader(dFader_c::FADER_TYPE_FADE);
+    dScene_c::setFadeOutFrame(0);
+
     // Force a background music fade-out
     // (note: "0" = the currently playing music, "1" = no music, and
     // higher values = specific music IDs)
     dAudio::hashname_a2bd17ff_6bcc38cc(1);
-    
+
     // The game normally uses this function to reset some game state
     // upon death, including the spawn position if loading from
     // checkpoint
     dScStage_c::m_instance->restoreOldPlayerInfo();
-    
+
     // Trigger the actual stage reload
     u8 world = dScStage_c::m_instance->curWorld;
     u8 level = dScStage_c::m_instance->curLevel;

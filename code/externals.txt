@@ -15,3 +15,4 @@ sprintf=0x802e1acc
 findPictureByName__Q23d2d7Multi_cFPCc=0x800073d0
 m_instance__13dStageTimer_c=0x8042a350
 mCollectionCoin__10dScStage_c=0x803744b0
+setFadeOutFrame__8dScene_cFUs=0x800e2050

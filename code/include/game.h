@@ -3,6 +3,11 @@
 #include <kamek.h>
 
 
+class dScene_c {
+public:
+    /* 800e2050 */ static void setFadeOutFrame(u16 duration);
+};
+
 class dScStage_c {
 public:
     u8 pad[0x120c];
