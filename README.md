@@ -17,6 +17,8 @@ This mod is legal for [the speedrun.com IL leaderboards](https://www.speedrun.co
   - Shows star coins collected during this run-through of the level
   - Becomes visible after level clear
 
+<p align="center"><img src="screenshot.png?raw=true" width="512px" alt="Screenshot of the mod"/></p>
+
 ## Setup
 
 - [Download the zip file for the latest release](https://github.com/RoadrunnerWMC/NSMBW-ILs-Mod/releases/latest) (for example, "nsmbw_ils_mod_v1.0.0.zip"). This mod is a Riivolution patch, so install the Homebrew Channel and Riivolution first, and then install the mod to your SD card. There are many tutorials on how to set up Riivolution patches online.
